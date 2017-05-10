@@ -25,7 +25,7 @@ SECRET_KEY = 'fjq7dspd6rcnalwad_rme7!&3(7#&od&lb)^&(7k#edt@suv+q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.100','localhost','127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'frontpanel1.apps.Frontpanel1Config',
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,25 @@ WSGI_APPLICATION = 'evaldj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_db2',
+        'USER': 'admin',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',   # Or an IP Address that your database is hosted on
+        'PORT': '3306',
+        #optional:
+        'OPTIONS': {
+            'charset' : 'utf8',
+            'use_unicode' : True,
+             'init_command': 'SET '
+                'storage_engine=INNODB,'
+                'character_set_connection=utf8,'
+                'collation_connection=utf8_bin'
+                #'sql_mode=STRICT_TRANS_TABLES,'    # see note below
+                #'SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED',
+        },
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_general_ci',
     }
 }
 
@@ -103,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 
